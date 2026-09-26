@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Image from "next/image";
 import "./globals.css";
 
 import Navbar from "@/components/shared/Navbar";
@@ -33,17 +34,22 @@ export default function RootLayout({ children }) {
         <FitLogProvider>
           <Navbar />
 
-          {children}
+          <main className="flex-1">{children}</main>
 
-          {/* Footer */}
           <footer className="border-t border-base-300 bg-base-200">
-            <div className="container mx-auto flex min-h-24 items-center justify-between px-4">
-              <div className="text-lg font-semibold tracking-wide">
-                <span className="mr-2 text-[#ccff00]">⚒</span>
+            <div className="container mx-auto flex min-h-24 flex-col items-center justify-between gap-3 px-4 py-5 sm:flex-row">
+              <div className="flex items-center gap-2 text-lg font-semibold tracking-wide">
+                <Image
+                  src="/logo.png"
+                  alt="FitLog Logo"
+                  width={32}
+                  height={32}
+                />
+
                 FITLOG
               </div>
 
-              <p className="text-sm text-base-content/70">
+              <p className="text-center text-sm text-base-content/60">
                 © 2026 FitLog — Workout Library. Train hard, log honest.
               </p>
             </div>
@@ -52,7 +58,6 @@ export default function RootLayout({ children }) {
           <ToastContainer
             position="top-right"
             autoClose={2500}
-            hideProgressBar={false}
             newestOnTop
             closeOnClick
             pauseOnHover
