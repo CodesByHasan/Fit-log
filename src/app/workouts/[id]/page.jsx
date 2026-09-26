@@ -5,10 +5,10 @@ import SaveButton from "@/components/workoutDetails/SaveButton";
 
 const getWorkout = async (id) => {
   try {
-    const response = await fetch(
-  `https://api.api-store.workers.dev/api/fitlog/${id}`,
+   const response = await fetch(
+  `https://api.abcz.workers.dev/api/fitlog/${id}`,
   { cache: "no-store" }
-  );
+ );
 
     if (!response.ok) {
       throw new Error("Workout not found");
