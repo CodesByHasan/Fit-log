@@ -76,11 +76,11 @@ The interface uses Tailwind CSS and daisyUI to provide a clean and responsive ex
 
 Workout data is fetched from:
 
-https://api.api-store.workers.dev/api/fitlog
+https://api.abcz.workers.dev/api/fitlog
 
 Workout details are fetched using:
 
-https://api.api-store.workers.dev/api/fitlog/:id
+https://api.abcz.workers.dev/api/fitlog/:id
 
 ---
 
