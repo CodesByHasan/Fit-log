@@ -1,20 +1,24 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useContext } from "react";
+
 import { FitLogContext } from "@/context/FitLogContext";
 
 const Navbar = () => {
   const pathname = usePathname();
+
   const { plan, saved } = useContext(FitLogContext);
 
   return (
     <nav className="bg-base-100 shadow-sm">
-      <div className="navbar container mx-auto">
-        
-        {/* Mobile Menu + Logo */}
+      <div className="navbar container mx-auto px-4">
+
+        {/* Mobile + Logo */}
         <div className="navbar-start">
+
           <div className="dropdown">
             <div
               tabIndex={0}
@@ -40,7 +44,7 @@ const Navbar = () => {
 
             <ul
               tabIndex={-1}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
             >
               <li>
                 <Link href="/">Workout</Link>
@@ -52,19 +56,29 @@ const Navbar = () => {
             </ul>
           </div>
 
-          {/* Logo */}
-          <Link href="/" className="text-xl font-bold tracking-wider">
-            FITLOG
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/logo.png"
+              alt="FitLog Logo"
+              width={38}
+              height={38}
+              priority
+            />
+
+            <span className="text-xl font-bold tracking-wider">
+              FITLOG
+            </span>
           </Link>
         </div>
 
         {/* Desktop Navigation */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
+
             <li>
               <Link
                 href="/"
-                className={pathname === "/" ? "font-bold" : ""}
+                className={pathname === "/" ? "font-bold text-[#ccff00]" : ""}
               >
                 Workout
               </Link>
@@ -73,27 +87,34 @@ const Navbar = () => {
             <li>
               <Link
                 href="/my-plan"
-                className={pathname === "/my-plan" ? "font-bold" : ""}
+                className={
+                  pathname === "/my-plan"
+                    ? "font-bold text-[#ccff00]"
+                    : ""
+                }
               >
                 My Plan
               </Link>
             </li>
+
           </ul>
         </div>
 
-        {/* Plan + Saved */}
+        {/* Counters */}
         <div className="navbar-end gap-2">
+
           <Link
             href="/my-plan"
-            className="btn btn-sm"
+            className="btn btn-sm border-0 text-black"
             style={{
               backgroundColor: "#ccff00",
-              borderColor: "#ccff00",
-              color: "#000",
             }}
           >
             Plan
-            <span className="badge badge-sm">{plan.length}</span>
+
+            <span className="badge badge-sm bg-black text-white">
+              {plan.length}
+            </span>
           </Link>
 
           <Link
@@ -101,10 +122,13 @@ const Navbar = () => {
             className="btn btn-sm btn-outline"
           >
             Saved
-            <span className="badge badge-sm">{saved.length}</span>
-          </Link>
-        </div>
 
+            <span className="badge badge-sm">
+              {saved.length}
+            </span>
+          </Link>
+
+        </div>
       </div>
     </nav>
   );
