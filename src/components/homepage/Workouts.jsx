@@ -2,12 +2,9 @@ import WorkoutCard from "@/components/shared/WorkoutCard";
 
 const Workouts = async () => {
   const response = await fetch(
-    "https://api.abcz.workers.dev/api/fitlog",
-    {
-      cache: "no-store",
-    }
-  );
-
+  "https://api.api-store.workers.dev/api/fitlog",
+  { cache: "no-store" }
+);
   const workoutsData = await response.json();
 
   return (
