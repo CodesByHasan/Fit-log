@@ -1,31 +1,14 @@
 import Banner from "@/components/homepage/Banner";
 import Workouts from "@/components/homepage/Workouts";
+import React from "react";
 
-const getWorkouts = async () => {
-  const response = await fetch(
-    "https://api.abcz.workers.dev/api/fitlog",
-    {
-      cache: "no-store",
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch workouts");
-  }
-
-  return response.json();
-};
-
-const HomePage = async () => {
-  const workouts = await getWorkouts();
-
+const Page = () => {
   return (
-    <main>
+    <div>
       <Banner />
-
-      <Workouts workouts={workouts} />
-    </main>
+      <Workouts />
+    </div>
   );
 };
 
-export default HomePage;
+export default Page;
