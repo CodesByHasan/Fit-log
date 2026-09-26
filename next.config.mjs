@@ -1,11 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enables the React Compiler (React 19 / Next.js 15+)
-  experimental: {
-    reactCompiler: true,
-  },
+  reactCompiler: true,
 
-  // Authorizes external images from img.magnific.com for <Image />
   images: {
     remotePatterns: [
       {
