@@ -30,26 +30,18 @@ const Workouts = async () => {
       className="container mx-auto my-[70px] px-4"
     >
 
-      {/* Heading */}
-      <div className="mb-10 text-center">
-
-        <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-[#ccff00]">
-          THE LIBRARY
-        </p>
-
-        <h2 className="text-3xl font-bold text-white md:text-4xl">
-          Find Your Next Workout
-        </h2>
-
-        <p className="mx-auto mt-3 max-w-2xl text-base-content/60">
-          Browse focused workouts built for strength, conditioning, and
-          everyday progress.
-        </p>
-
-      </div>
+  {/* Heading */}
+   <div className="mb-10 text-left">
+    <h2 className="text-3xl font-extrabold uppercase tracking-tight text-white md:text-4xl">
+    THE LIBRARY
+   </h2>
+   <p className="mt-2 text-base text-base-content/60">
+    Twelve lifts covering every major muscle group.
+    </p>
+   </div>
 
       {/* Workout Grid */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
 
         {workoutsData.map((workout) => (
           <WorkoutCard
