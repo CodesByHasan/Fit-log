@@ -1,5 +1,6 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import Image from "next/image";
+import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
 
 import Navbar from "@/components/shared/Navbar";
@@ -28,13 +29,13 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       data-theme="dark"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable}`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-screen">
         <FitLogProvider>
           <Navbar />
 
-          <main className="flex-1">{children}</main>
+          <main>{children}</main>
 
           <footer className="border-t border-base-300 bg-base-200">
             <div className="container mx-auto flex min-h-24 flex-col items-center justify-between gap-3 px-4 py-5 sm:flex-row">

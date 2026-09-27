@@ -1,25 +1,22 @@
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 import AddToPlanButton from "@/components/workoutDetails/AddToPlanButton";
 import SaveButton from "@/components/workoutDetails/SaveButton";
 
 const getWorkout = async (id) => {
-  try {
-   const response = await fetch(
-  `https://api.abcz.workers.dev/api/fitlog/${id}`,
-  { cache: "no-store" }
- );
-
-    if (!response.ok) {
-      throw new Error("Workout not found");
+  const response = await fetch(
+    `https://api.abcz.workers.dev/api/fitlog/${id}`,
+    {
+      cache: "no-store",
     }
+  );
 
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching workout:", error);
-
+  if (!response.ok) {
     return null;
   }
+
+  return response.json();
 };
 
 const WorkoutDetails = async ({ params }) => {
@@ -28,19 +25,7 @@ const WorkoutDetails = async ({ params }) => {
   const workout = await getWorkout(id);
 
   if (!workout) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold">
-            Workout Not Found
-          </h2>
-
-          <p className="mt-2 text-base-content/60">
-            The workout you are looking for does not exist.
-          </p>
-        </div>
-      </div>
-    );
+    notFound();
   }
 
   return (
@@ -54,156 +39,156 @@ const WorkoutDetails = async ({ params }) => {
           <Image
             src={workout.image}
             alt={workout.name}
-            width={1000}
+            width={900}
             height={700}
-            className="h-full max-h-[600px] w-full object-cover"
-            priority
+            className="h-full min-h-[400px] w-full object-cover"
           />
         </div>
 
         {/* Information */}
-        <div className="flex flex-col justify-center">
+        <div>
 
+          {/* Categories */}
           <div className="mb-4 flex flex-wrap gap-2">
             {workout.muscleGroups?.map((group) => (
               <span
                 key={group}
-                className="badge badge-outline"
+                className="badge badge-outline uppercase"
               >
                 {group}
               </span>
             ))}
           </div>
 
-          <h1 className="text-4xl font-extrabold text-white md:text-5xl">
+          {/* Title */}
+          <h1 className="text-4xl font-extrabold uppercase md:text-5xl">
             {workout.name}
           </h1>
 
-          <p className="mt-5 leading-7 text-base-content/60">
+          {/* Description */}
+          <p className="mt-5 text-base leading-7 text-base-content/60">
             {workout.description}
           </p>
 
           {/* Specs */}
-          <div className="my-8 overflow-hidden rounded-2xl border border-base-300">
+          <div className="mt-8 overflow-hidden rounded-2xl border border-base-300">
 
-            <div className="grid grid-cols-2 border-b border-base-300">
-              <div className="p-4">
-                <p className="text-xs uppercase text-base-content/50">
-                  Equipment
-                </p>
+            <div className="border-b border-base-300 bg-base-200 px-5 py-4">
+              <h2 className="font-bold uppercase tracking-wider">
+                Key Specs
+              </h2>
+            </div>
 
-                <p className="mt-1 font-semibold">
+            <div className="divide-y divide-base-300">
+
+              <div className="grid grid-cols-2 px-5 py-4">
+                <span className="text-sm text-base-content/50">
+                  EQUIPMENT
+                </span>
+
+                <span className="text-right font-medium">
                   {workout.equipment}
-                </p>
+                </span>
               </div>
 
-              <div className="border-l border-base-300 p-4">
-                <p className="text-xs uppercase text-base-content/50">
-                  Difficulty
-                </p>
+              <div className="grid grid-cols-2 px-5 py-4">
+                <span className="text-sm text-base-content/50">
+                  DIFFICULTY
+                </span>
 
-                <p className="mt-1 font-semibold">
+                <span className="text-right font-medium">
                   {workout.difficulty}
-                </p>
+                </span>
               </div>
-            </div>
 
-            <div className="grid grid-cols-2 border-b border-base-300">
-              <div className="p-4">
-                <p className="text-xs uppercase text-base-content/50">
-                  Sets
-                </p>
+              <div className="grid grid-cols-2 px-5 py-4">
+                <span className="text-sm text-base-content/50">
+                  SETS
+                </span>
 
-                <p className="mt-1 font-semibold">
+                <span className="text-right font-medium">
                   {workout.sets}
-                </p>
+                </span>
               </div>
 
-              <div className="border-l border-base-300 p-4">
-                <p className="text-xs uppercase text-base-content/50">
-                  Reps
-                </p>
+              <div className="grid grid-cols-2 px-5 py-4">
+                <span className="text-sm text-base-content/50">
+                  REPS
+                </span>
 
-                <p className="mt-1 font-semibold">
+                <span className="text-right font-medium">
                   {workout.reps}
-                </p>
+                </span>
               </div>
+
+              <div className="grid grid-cols-2 px-5 py-4">
+                <span className="text-sm text-base-content/50">
+                  DURATION
+                </span>
+
+                <span className="text-right font-medium">
+                  {workout.duration} min
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 px-5 py-4">
+                <span className="text-sm text-base-content/50">
+                  CALORIES
+                </span>
+
+                <span className="text-right font-medium">
+                  {workout.caloriesBurned} kcal
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 px-5 py-4">
+                <span className="text-sm text-base-content/50">
+                  RATING
+                </span>
+
+                <span className="text-right font-medium">
+                  ⭐ {workout.rating}
+                </span>
+              </div>
+
             </div>
-
-            <div className="grid grid-cols-3">
-              <div className="p-4">
-                <p className="text-xs uppercase text-base-content/50">
-                  Duration
-                </p>
-
-                <p className="mt-1 font-semibold">
-                  {workout.duration}
-                </p>
-              </div>
-
-              <div className="border-l border-base-300 p-4">
-                <p className="text-xs uppercase text-base-content/50">
-                  Calories
-                </p>
-
-                <p className="mt-1 font-semibold">
-                  {workout.calories}
-                </p>
-              </div>
-
-              <div className="border-l border-base-300 p-4">
-                <p className="text-xs uppercase text-base-content/50">
-                  Rating
-                </p>
-
-                <p className="mt-1 font-semibold">
-                  ★ {workout.rating}
-                </p>
-              </div>
-            </div>
-
           </div>
 
           {/* Buttons */}
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <AddToPlanButton workout={workout} />
             <SaveButton workout={workout} />
           </div>
-
         </div>
       </div>
 
       {/* Instructions */}
       <section className="mt-16">
-
-        <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-[#ccff00]">
-          HOW TO DO IT
-        </p>
-
-        <h2 className="text-3xl font-bold">
-          Instructions
+        <h2 className="text-3xl font-extrabold uppercase">
+          INSTRUCTIONS
         </h2>
 
-        <div className="mt-8 grid gap-5 md:grid-cols-2">
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          {workout.instructions?.slice(0, 4).map(
+            (instruction, index) => (
+              <div
+                key={index}
+                className="rounded-2xl border border-base-300 bg-base-200 p-5"
+              >
+                <div className="flex gap-4">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#ccff00] font-bold text-black">
+                    {index + 1}
+                  </span>
 
-          {workout.instructions?.map((instruction, index) => (
-            <div
-              key={index}
-              className="rounded-2xl border border-base-300 bg-base-200 p-6"
-            >
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#ccff00] font-bold text-black">
-                {index + 1}
+                  <p className="leading-7 text-base-content/70">
+                    {instruction}
+                  </p>
+                </div>
               </div>
-
-              <p className="leading-7 text-base-content/70">
-                {instruction}
-              </p>
-            </div>
-          ))}
-
+            )
+          )}
         </div>
       </section>
-
     </main>
   );
 };

@@ -1,13 +1,13 @@
 import Banner from "@/components/homepage/Banner";
 import Workouts from "@/components/homepage/Workouts";
 
-const Page = () => {
+const Home = () => {
   return (
-    <div>
+    <>
       <Banner />
       <Workouts />
-    </div>
+    </>
   );
 };
 
-export default Page;
+export default Home;

@@ -7,6 +7,7 @@ const PlanWorkoutCard = ({
   workout,
   onRemove,
   onDone,
+  isSaved = false,
 }) => {
   return (
     <div className="relative flex flex-col gap-5 rounded-2xl border border-base-300 bg-base-200 p-4 sm:flex-row">
@@ -33,6 +34,7 @@ const PlanWorkoutCard = ({
       {/* Content */}
       <div className="flex flex-1 flex-col">
 
+        {/* Categories */}
         <div className="mb-2 flex flex-wrap gap-2">
           {workout.muscleGroups?.map((group) => (
             <span
@@ -44,20 +46,26 @@ const PlanWorkoutCard = ({
           ))}
         </div>
 
+        {/* Name */}
         <h3 className="text-xl font-bold">
           {workout.name}
         </h3>
 
+        {/* Equipment */}
         <p className="mt-1 text-sm text-base-content/60">
           Equipment: {workout.equipment}
         </p>
 
+        {/* Stats */}
         <div className="mt-4 flex flex-wrap gap-5 text-sm text-base-content/70">
           <span>⏱ {workout.duration} min</span>
-          <span>🔥 {workout.calories} cal</span>
+
+          <span>🔥 {workout.caloriesBurned} kcal</span>
+
           <span>⭐ {workout.rating}</span>
         </div>
 
+        {/* Actions */}
         <div className="mt-5 flex flex-wrap gap-2">
 
           <Link
@@ -67,12 +75,14 @@ const PlanWorkoutCard = ({
             View Details
           </Link>
 
-          <button
-            onClick={() => onDone(workout.id)}
-            className="btn btn-sm border-0 bg-[#ccff00] text-black hover:bg-[#b8e600]"
-          >
-            Mark as Done
-          </button>
+          {!isSaved && (
+            <button
+              onClick={() => onDone(workout.id)}
+              className="btn btn-sm border-0 bg-[#ccff00] text-black hover:bg-[#b8e600]"
+            >
+              ✓ Mark as Done
+            </button>
+          )}
 
         </div>
       </div>

@@ -15,6 +15,7 @@ const Navbar = () => {
   return (
     <nav className="bg-base-100 shadow-sm">
       <div className="navbar container mx-auto px-4">
+
         {/* Mobile + Logo */}
         <div className="navbar-start">
           <div className="dropdown">
@@ -42,7 +43,7 @@ const Navbar = () => {
 
             <ul
               tabIndex={-1}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content z-50 mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
             >
               <li>
                 <Link href="/">Workout</Link>
@@ -100,8 +101,8 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Plan + Saved Counters */}
-        <div className="navbar-end gap-3">
+        {/* Plan + Saved */}
+        <div className="navbar-end gap-2">
           <Link
             href="/my-plan"
             className="flex items-center gap-2 rounded-full bg-base-200 px-4 py-2 text-sm font-medium transition hover:bg-base-300"
@@ -118,7 +119,7 @@ const Navbar = () => {
 
           <Link
             href="/my-plan"
-            className="flex items-center gap-2 rounded-full px-1 py-2 text-sm font-medium"
+            className="flex items-center gap-2 rounded-full px-2 py-2 text-sm font-medium"
           >
             <span>Saved</span>
 
