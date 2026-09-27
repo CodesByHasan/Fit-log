@@ -15,10 +15,8 @@ const Navbar = () => {
   return (
     <nav className="bg-base-100 shadow-sm">
       <div className="navbar container mx-auto px-4">
-
         {/* Mobile + Logo */}
         <div className="navbar-start">
-
           <div className="dropdown">
             <div
               tabIndex={0}
@@ -74,11 +72,14 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-
             <li>
               <Link
                 href="/"
-                className={pathname === "/" ? "font-bold text-[#ccff00]" : ""}
+                className={
+                  pathname === "/"
+                    ? "font-bold text-[#ccff00]"
+                    : ""
+                }
               >
                 Workout
               </Link>
@@ -96,38 +97,35 @@ const Navbar = () => {
                 My Plan
               </Link>
             </li>
-
           </ul>
         </div>
 
-        {/* Counters */}
-        <div className="navbar-end gap-2">
-
+        {/* Plan + Saved Counters */}
+        <div className="navbar-end gap-3">
           <Link
             href="/my-plan"
-            className="btn btn-sm border-0 text-black"
-            style={{
-              backgroundColor: "#ccff00",
-            }}
+            className="flex items-center gap-2 rounded-full bg-base-200 px-4 py-2 text-sm font-medium transition hover:bg-base-300"
           >
-            Plan
+            <span>Plan</span>
 
-            <span className="badge badge-sm bg-black text-white">
+            <span
+              className="flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-xs font-semibold text-black"
+              style={{ backgroundColor: "#ccff00" }}
+            >
               {plan.length}
             </span>
           </Link>
 
           <Link
             href="/my-plan"
-            className="btn btn-sm btn-outline"
+            className="flex items-center gap-2 rounded-full px-1 py-2 text-sm font-medium"
           >
-            Saved
+            <span>Saved</span>
 
-            <span className="badge badge-sm">
+            <span className="flex h-5 min-w-5 items-center justify-center rounded-full border border-base-content/70 px-1.5 text-xs font-semibold">
               {saved.length}
             </span>
           </Link>
-
         </div>
       </div>
     </nav>

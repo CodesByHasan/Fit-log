@@ -74,7 +74,7 @@ const WorkoutCard = ({ workout }) => {
 
           <div>
             <p className="text-sm font-bold">
-              {workout.calories}
+              {workout.caloriesBurned}
             </p>
 
             <p className="text-xs text-base-content/50">

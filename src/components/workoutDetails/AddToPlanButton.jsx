@@ -2,19 +2,16 @@
 
 import { useContext } from "react";
 import { toast } from "react-toastify";
-
 import { FitLogContext } from "@/context/FitLogContext";
 
 const AddToPlanButton = ({ workout }) => {
   const { plan, setPlan } = useContext(FitLogContext);
 
-  const alreadyAdded = plan.some(
-    (item) => item.id === workout.id
-  );
-
   const handleAddToPlan = () => {
+    const alreadyAdded = plan.some((item) => item.id === workout.id);
+
     if (alreadyAdded) {
-      toast.info("Workout is already in your plan.");
+      toast.info("Workout is already added to your plan.");
       return;
     }
 
@@ -23,10 +20,7 @@ const AddToPlanButton = ({ workout }) => {
       return;
     }
 
-    setPlan((previousPlan) => [
-      ...previousPlan,
-      workout,
-    ]);
+    setPlan((previousPlan) => [...previousPlan, workout]);
 
     toast.success("Workout added to today's plan.");
   };
@@ -34,10 +28,9 @@ const AddToPlanButton = ({ workout }) => {
   return (
     <button
       onClick={handleAddToPlan}
-      disabled={alreadyAdded}
       className="btn flex-1 border-0 bg-[#ccff00] text-black hover:bg-[#b8e600]"
     >
-      {alreadyAdded ? "Added to Plan" : "Add to Today's Plan"}
+      Add to Today's Plan
     </button>
   );
 };

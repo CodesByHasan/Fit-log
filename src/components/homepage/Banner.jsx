@@ -21,13 +21,13 @@ const Banner = () => {
             </h1>
 
             <p className="max-w-xl text-base leading-7 text-base-content/60 md:text-lg">
-              Find the right workout, follow the plan, and keep your progress
-              moving forward. Your training starts here.
+              FitLog is a dark, no-nonsense gym companion: pick a lift, lock it
+              into today's plan, and watch the week's work add up.
             </p>
 
             <Link
               href="#library"
-              className="btn border-0 bg-[#ccff00] px-6 text-black hover:bg-[#b8e600]"
+              className="btn border-0 bg-[#ccff00] px-6 text-black hover:bg-[#b8e600] rounded-2xl"
             >
               BROWSE WORKOUTS
             </Link>
